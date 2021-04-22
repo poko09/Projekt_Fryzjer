@@ -1,0 +1,29 @@
+
+.gallery {
+    margin: 10px 100px;
+    box-sizing: border-box;
+
+}
+.gallery img {
+    transition: 1s;
+    padding: 15px;
+    width: 400px;
+
+}
+.gallery img:hover {
+    filter: grayscale(100%);
+    transform: scale(1.1);
+
+}
+
+
+
+.wrapper{
+    min-height: 100vh;
+    width: 100%;
+    background-image:linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url(images/galeria.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
