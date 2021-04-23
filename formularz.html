@@ -1,0 +1,205 @@
+<!DOCTPYE html>
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <meta name = "descrtiption" content = "Najlepszy salon fryzjerski" > 
+        
+        <title>
+            Twój Fryzjer
+        </title>
+    </head>
+    <body>
+        
+       
+    </body>
+
+   <style>
+  
+        /* kolor t≥a */ 
+        body {
+            margin-left: auto;
+            margin-right: auto;
+
+            background-image: url("tlo_formularz.jpg");
+            height: auto;
+            font-family: Verdana;
+            text-align: center;
+        }
+  
+        /* cechy samego kwestionariusza */
+        form {
+            background-color: rgb(81, 70, 238);
+            background: url('https://haircutbyhugo.com/wp-content/uploads/2019/01/hairdresser.jpg');
+           
+          
+            border: 2px solid rgb(247, 249, 250);
+            opacity:1;
+            max-width: 500px;
+            border-radius: 10px;
+            margin: 50px auto;
+            padding: 20px 15px;
+            box-shadow: 2px 5px 10px rgba(221, 221, 233, 0.884);
+        }
+  
+        /* napis w kwestionariuszu */
+        .form-control {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+  
+        /* miejsce do wpisywania danych */ 
+        .form-control label {
+            display: inline-box;
+            margin-bottom: 5px;
+        }
+  
+        /* ramki boxow do wpisywania danych */
+        .form-control input,
+        .form-control select,
+        .form-control textarea {
+            border: 2px solid rgb(252, 254, 255);
+            
+            border-radius: 10px;
+            font-family: inherit;
+            padding: 10px;
+            display: block;
+            width: 75%;
+        }
+  
+        /* button zatwierdzajĻcy */
+        .form-control input[type="radio"],
+        .form-control input[type="checkbox"] {
+            display: inline-block;
+            
+            width: auto;
+        }
+  
+        /* przycisk zatwierdzajĻcy */
+        button {
+            background-color: #fcf5f5;
+            border: 1px solid rgb(12, 0, 0);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 25px;
+            display: block;
+            width: 100%;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+    </style>
+    <body>
+        <h1><p style="color: white;">Zapisz się na wizytę!</p></h1>
+      
+        <!-- Create Form -->
+        <form id="form">
+      
+            <!-- szczegů≥y -->
+            <div class="form-control">
+                <label for="name" id="label-name">
+                <b>
+                    <p style="color: white;">Imię</p></b>
+                </label>
+      
+                <!-- typ pola -->
+                <input type="text"
+                       id="name"
+                       placeholder="Wpisz swoje imię" />
+            </div>
+            <div class="form-control">
+                <label for="surname" id="label-name">
+                    <b>
+                        <p style="color: white;">Nazwisko</p></b>
+                </label>
+      
+                <!-- typ pola -->
+                <input type="text"
+                       id="surname"
+                       placeholder="Wpisz swoje nazwisko" />
+            </div>
+       
+            <div class="form-control">
+                <label for="email" id="label-email">
+                    <b>
+                        <p style="color: white;">Email</p></b>
+                </label>
+      
+                <!-- typ pola Email-->
+                <input type="email"
+                       id="email"
+                       placeholder="Wpisz swůj email" />
+            </div>
+            <div class="form-control">
+                <label for="phone" id="label-phone">
+                    <b>
+                        <p style="color: white;">Telefon</p></b>
+                </label>
+      
+                <!-- typ pola Text -->
+                <input type="text"
+                       id="phone"
+                       placeholder="Podaj swoj numer telefonu np. 000-000-000"
+                       pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" />
+            </div>
+            <div class="form-control">
+                <label for="date" id="label-date">
+                    <b>
+                        <p style="color: white;">Data wizyty</p></b>
+                </label>
+      
+                <!-- typ pola Text -->
+                <input type="date"
+                       id="date"
+                       placeholder="Podaj datÍ wizyty" 
+                       min="2021-04-21"
+                       max="2022-06-31"/>
+            </div>
+            <div class="form-control">
+                <label for="time" id="label-time">
+                    <b>
+                        <p style="color: white;">Godzina wizyty</p></b>
+                </label>
+      
+                <!-- typ pola Text -->
+                <input type="time"
+                       id="time"
+                       placeholder="Podaj godzinÍ wizyty" 
+                       min="08:00"
+                       max="20:00"/>
+            </div>
+            
+       
+            <div class="form-control">
+                <label for="role" id="label-role">
+                    <b>
+                        <p style="color: white;">Wybierz cel wizyty</p></b>
+                </label>
+                  
+                <!-- lista -->
+                <select name="role" id="role">
+                    <option value="1">Strzyzenie fryzury (50 zl)</option>
+                    <option value="2">Strzyzenie brody (50 zl) </option>
+                    <option value="3">Strzyzenie brody i fryzury (100 zl)</option>
+                </select>
+            </div>
+            <div class="form-control">
+                <label for="comment">
+                    <b>
+                        <p style="color: white;">Komentarze do rezerwacji</p></b>
+                </label>
+      
+                <!-- dodatkowe pole -->
+                <textarea name="comment" id="comment"
+                    placeholder="Dodatkowe zyczenia lub prośby">
+                </textarea>
+            </div>
+       
+            <!-- dodatkowe pole -->
+            <button type="submit" value="submit">
+                Zapisz się!
+            </button>
+        </form>
+    </body>
+
+
+    
+</html>

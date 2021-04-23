@@ -213,10 +213,6 @@ header {
 }
 
 
-
-
-
-
 .hamburger {
     display: block;
     position: relative;
@@ -257,6 +253,7 @@ header {
 
 .section__subtitle--intro {
     display: inline-block;
+    display: block;
 }
 
 @media (min-width: 600px) {
@@ -319,6 +316,7 @@ header {
 
 .services {
     margin-bottom: 4em;
+   
 }
 
 .service {
@@ -348,7 +346,9 @@ header {
 .about-me__img {
     box-shadow: var(--bs);
 }
-
+.about-me__klick {
+    color: var(--clr-light);
+}
 @media (min-width: 600px) {
     .about-me {
         display: grid;
