@@ -82,7 +82,7 @@
            }
     
            if ($wszystko_ok == true) {
-                if($conn->query("INSERT INTO oferta VALUES ('$firstName', '$lastName', '$email', '$number', '$date', '$time', '$option1' )"))
+                if($conn->query("INSERT INTO formularz_tabelka VALUES ('$firstName', '$lastName', '$email', '$number', '$date', '$time', '$option1' )"))
                 {
                     $_SESSION['udane']==true;
                     header('Location: formularz.php');

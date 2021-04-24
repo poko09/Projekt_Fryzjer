@@ -16,6 +16,8 @@ formularza z walidacją danych (formularz.php) oraz strony, w której można zna
 tzw. "hamburger" zrobiony w JavaScripcie, który ułatwia poruszanie się po stronie. Tło wykorzystane
 w naszym projekcie zostało zrobione przy pomocy generatora gradientów w3schools. Do strony głównej można powrócić
 z każdej podstrony za pomocą kliknięcia w logo.
+W celu skorzystania z formularza należy stworzyć swoją baze danych, zamieszczamy gotowa tablke w pliku o nazwie 'formularz_tabelka'
+
 
 Źródła oraz inspiracje:
 
