@@ -1,3 +1,104 @@
+<?php
+
+    session_start();
+    
+    $conn = new mysqli('localhost', 'root', '', 'projekt_fryzjer');
+    
+
+    if($conn->connect_errno!=0)
+    {
+        echo "Error: ".$conn->connect_errno;
+    }
+
+    else 
+    {       
+        if(isset($_POST['email']))
+        {
+            $firstName = $_POST['firstName'];
+            $lastName = $_POST['lastName'];
+            $email = $_POST['email'];
+            $number = $_POST['number'];
+            $date = $_POST['date'];
+            $time = $_POST['time'];
+            $wszystko_ok = true;
+
+            if(strlen($firstName)<3 || strlen($firstName)>25){
+                $wszystko_ok=false;
+                $_SESSION['e_name']="Imie musi miec od 3 do 25 znakow!";
+            }
+            if (!preg_match("/^[a-zA-Z-' ]*$/",$firstName)) {
+                $wszystko_ok=false;
+                $_SESSION['e_name']="Niepoprawny format imienia";
+              }
+    
+            if (empty($firstName)) {
+                 $wszystko_ok=false;
+                 $_SESSION['e_name']="Uzupełnij pole!";
+            }
+
+            if((strlen($lastName)<3) || (strlen($lastName)>20)) {
+                $wszystko_ok = false;
+                $_SESSION['e_lastName']="Nazwisko musi miec od 3 do 25 znakow!";
+            }
+            if (!preg_match("/^[a-zA-Z-' ]*$/",$lastName)) {
+                $wszystko_ok=false;
+                $_SESSION['e_lastName']="Niepoprawny format nazwiska!";
+              }
+            if (empty($lastName)) {
+                $wszystko_ok=false;
+                $_SESSION['e_lastName']="Uzupełnij pole!";
+               }
+    
+            $emailB=filter_var($email, FILTER_SANITIZE_EMAIL);
+    
+            if(filter_var($emailB, FILTER_VALIDATE_EMAIL)==false ||($emailB!= $email)) {
+                $wszystko_ok=false;
+                $_SESSION['e_email']="Niepoprawny format emailu!";
+            }
+            if (empty($email)) {
+                $wszystko_ok=false;
+                $_SESSION['e_email']="Uzupełnij pole!";
+            }   
+            
+            if (empty($number)) {
+            $wszystko_ok=false;
+            $_SESSION['e_number']="Uzupełnij pole!";
+            }
+            if (empty($date)) {
+            $wszystko_ok=false;
+            $_SESSION['e_date']="Uzupełnij pole!";
+            }
+            if (empty($time)) {
+                $wszystko_ok=false;
+                $_SESSION['e_time']="Uzupełnij pole!";
+            }
+            
+            if(isset($_POST['option1'])){
+                $option1 = $_POST['option1']; 
+           }
+           else {
+               $wszystko_ok=false;
+               $_SESSION['e_option1']="Uzupełnij pole!";
+           }
+    
+           if ($wszystko_ok == true) {
+                if($conn->query("INSERT INTO oferta VALUES ('$firstName', '$lastName', '$email', '$number', '$date', '$time', '$option1' )"))
+                {
+                    $_SESSION['udane']==true;
+                    header('Location: formularz.php');
+                }
+                else 
+                {
+                    throw new Exception($conn->error);
+                }
+           }
+        
+            $conn->close();
+
+    }
+}
+?>
+
 <!DOCTPYE html>
 <html>
     <head>
@@ -86,14 +187,19 @@
             margin-top: 50px;
             margin-bottom: 20px;
         }
-       
+        .error
+        {
+            color:red;
+        font-size: small;
+        }
+            
         
     </style>
     <body>
         <h1><p style="color: white;">Zapisz się na wizytę!</p></h1>
       
         <!-- Create Form -->
-        <form action=connect.php method="post">
+        <form  method="post">
             
             <!-- szczegóły -->
             <div class="form-control">
@@ -107,6 +213,13 @@
                        id="name"
                        placeholder="Wpisz swoje imię"
                        name="firstName"/>
+                       <?php
+                    if(isset($_SESSION['e_name']))
+                    {
+                        echo '<div class="error">'.$_SESSION['e_name'].'</div>';
+                        unset($_SESSION['e_name']);
+                    }
+                ?>
             </div>
             <div class="form-control">
                 <label for="surname" id="label-name">
@@ -119,6 +232,13 @@
                        id="surname"
                        placeholder="Wpisz swoje nazwisko"
                        name="lastName" />
+                       <?php
+                    if(isset($_SESSION['e_lastName']))
+                    {
+                        echo '<div class="error">'.$_SESSION['e_lastName'].'</div>';
+                        unset($_SESSION['e_lastNname']);
+                    }
+                ?>
             </div>
        
             <div class="form-control">
@@ -132,6 +252,13 @@
                        id="email"
                        placeholder="Wpisz swój email"
                        name="email" />
+                       <?php
+                    if(isset($_SESSION['e_email']))
+                    {
+                        echo '<div class="error">'.$_SESSION['e_email'].'</div>';
+                        unset($_SESSION['e_email']);
+                    }
+                ?>
             </div>
             <div class="form-control">
                 <label for="phone" id="label-phone">
@@ -145,6 +272,13 @@
                        placeholder="Podaj swoj numer telefonu np. 000-000-000"
                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}"
                        name="number" />
+                       <?php
+                    if(isset($_SESSION['e_number']))
+                    {
+                        echo '<div class="error">'.$_SESSION['e_number'].'</div>';
+                        unset($_SESSION['e_number']);
+                    }
+                ?>
             </div>
             <div class="form-control">
                 <label for="date" id="label-date">
@@ -159,6 +293,13 @@
                        min="2021-04-21"
                        max="2022-06-31"
                        name="date"/>
+                       <?php
+                    if(isset($_SESSION['e_date']))
+                    {
+                        echo '<div class="error">'.$_SESSION['e_date'].'</div>';
+                        unset($_SESSION['e_date']);
+                    }
+                ?>
             </div>
             <div class="form-control">
                 <label for="time" id="label-time">
@@ -173,6 +314,13 @@
                        min="08:00"
                        max="20:00"
                        name="time"/>
+                       <?php
+                    if(isset($_SESSION['e_time']))
+                    {
+                        echo '<div class="error">'.$_SESSION['e_time'].'</div>';
+                        unset($_SESSION['e_time']);
+                    }
+                ?>
             </div>
             
             <!-- ZERKNAC TUTAJ KONIECZNIE!
@@ -191,10 +339,12 @@
                     ><input
                         type="radio"
                         name="option1"
-                        value="b"
+                        value="brodaryzura"
                         id="broda"
                     />Broda (50 zł)</label
+                    
                     >
+                    
                     <br>
                     <label for="fryzura" class="radio-inline"><input
                         type="radio"
@@ -206,9 +356,16 @@
                     <label for="inne" class="radio-inline"><input
                         type="radio"
                         name="option1"
-                        value="i"
+                        value="inne"
                         id="inne"
                     />Broda + Fryzura (100 zł)</label>
+                    <?php
+                    if(isset($_SESSION['e_option1']))
+                    {
+                        echo '<div class="error">'.$_SESSION['e_option1'].'</div>';
+                        unset($_SESSION['e_option1']);
+                    }
+                ?>
                 </div>
             </div>
             </div>
