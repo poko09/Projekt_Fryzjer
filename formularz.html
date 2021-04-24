@@ -86,14 +86,16 @@
             margin-top: 50px;
             margin-bottom: 20px;
         }
+       
+        
     </style>
     <body>
         <h1><p style="color: white;">Zapisz się na wizytę!</p></h1>
       
         <!-- Create Form -->
-        <form id="form">
-      
-            <!-- szczegů≥y -->
+        <form action=connect.php method="post">
+            
+            <!-- szczegóły -->
             <div class="form-control">
                 <label for="name" id="label-name">
                 <b>
@@ -103,7 +105,8 @@
                 <!-- typ pola -->
                 <input type="text"
                        id="name"
-                       placeholder="Wpisz swoje imię" />
+                       placeholder="Wpisz swoje imię"
+                       name="firstName"/>
             </div>
             <div class="form-control">
                 <label for="surname" id="label-name">
@@ -114,7 +117,8 @@
                 <!-- typ pola -->
                 <input type="text"
                        id="surname"
-                       placeholder="Wpisz swoje nazwisko" />
+                       placeholder="Wpisz swoje nazwisko"
+                       name="lastName" />
             </div>
        
             <div class="form-control">
@@ -126,7 +130,8 @@
                 <!-- typ pola Email-->
                 <input type="email"
                        id="email"
-                       placeholder="Wpisz swój email" />
+                       placeholder="Wpisz swój email"
+                       name="email" />
             </div>
             <div class="form-control">
                 <label for="phone" id="label-phone">
@@ -138,7 +143,8 @@
                 <input type="text"
                        id="phone"
                        placeholder="Podaj swoj numer telefonu np. 000-000-000"
-                       pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" />
+                       pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}"
+                       name="number" />
             </div>
             <div class="form-control">
                 <label for="date" id="label-date">
@@ -151,7 +157,8 @@
                        id="date"
                        placeholder="Podaj datÍ wizyty" 
                        min="2021-04-21"
-                       max="2022-06-31"/>
+                       max="2022-06-31"
+                       name="date"/>
             </div>
             <div class="form-control">
                 <label for="time" id="label-time">
@@ -162,24 +169,48 @@
                 <!-- typ pola Text -->
                 <input type="time"
                        id="time"
-                       placeholder="Podaj godzinÍ wizyty" 
+                       placeholder="Podaj godzinę wizyty" 
                        min="08:00"
-                       max="20:00"/>
+                       max="20:00"
+                       name="time"/>
             </div>
             
-       
+            <!-- ZERKNAC TUTAJ KONIECZNIE!
             <div class="form-control">
                 <label for="role" id="label-role">
                     <b>
                         <p style="color: white;">Wybierz cel wizyty</p></b>
                 </label>
-                  
+            -->  
                 <!-- lista -->
-                <select name="role" id="role">
-                    <option value="1">Strzyzenie fryzury (50 zl)</option>
-                    <option value="2">Strzyzenie brody (50 zl) </option>
-                    <option value="3">Strzyzenie brody i fryzury (100 zl)</option>
-                </select>
+       
+            <div class="form-control" style="color: white;">
+                <label for="option1">Sposób strzyżenia</label>
+                <div>
+                    <label for="broda" class="radio-inline"
+                    ><input
+                        type="radio"
+                        name="option1"
+                        value="b"
+                        id="broda"
+                    />Broda (50 zł)</label
+                    >
+                    <br>
+                    <label for="fryzura" class="radio-inline"><input
+                        type="radio"
+                        name="option1"
+                        value="f"
+                        id="fryzura"
+                    />Fryzura (50 zł)</label>
+                    <br>
+                    <label for="inne" class="radio-inline"><input
+                        type="radio"
+                        name="option1"
+                        value="i"
+                        id="inne"
+                    />Broda + Fryzura (100 zł)</label>
+                </div>
+            </div>
             </div>
             <div class="form-control">
                 <label for="comment">
